@@ -3,6 +3,10 @@ function onOpen() {
         .addItem("Show Generator", "showSidebar")
         .addToUi();
 
+    DocumentApp.getUi().createMenu("Scratch Blocks Docs")
+        .addItem("Show Generator", "showSidebar")
+        .addToUi();
+
 }
 function showSidebar() {
     var ui = HtmlService.createTemplateFromFile('Sidebar').evaluate()

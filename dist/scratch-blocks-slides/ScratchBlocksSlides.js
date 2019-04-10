@@ -3,6 +3,10 @@ function onOpen() {
         .addItem("Show Generator", "showSidebar")
         .addToUi();
 
+    SlidesApp.getUi().createMenu("Scratch Blocks Slides")
+        .addItem("Show Generator", "showSidebar")
+        .addToUi();
+
 }
 function showSidebar() {
     var ui = HtmlService.createTemplateFromFile('Sidebar').evaluate()
@@ -24,12 +28,8 @@ function insertImage(img) {
     }
     else{
         slide = presentation.appendSlide();
-        Logger.log('hello');
     }
 
-
     slide.insertImage(blob);
-
-
 
 }
