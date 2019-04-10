@@ -1,0 +1,151 @@
+<script>
+    $('#loader').hide();
+    var editor = document.getElementById('editor');
+    var exportSVGLink = document.getElementById('export-svg');
+    var exportPNGLink = document.getElementById('export-png');
+    var obj = {
+        style: 'scratch3'
+    };
+    var pngUrl = "";
+    var codeMirror = CodeMirror(editor, {
+        value: obj.script || "",
+        //mode: "scratch",
+        indentUnit: 4,
+        tabSize: 4,
+        indentWithTabs: true,
+        lineNumbers: false,
+        autofocus: true,
+        cursorHeight: 1,
+        placeholder: '. . .'
+    });
+    codeMirror.setCursor(codeMirror.getValue().length);
+    // Debounces a function, pulled out of Underscore.js
+    function debounce(func, wait, immediate) {
+        var timeout, result;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate)
+                    result = func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow)
+                result = func.apply(context, args);
+            return result;
+        };
+    }
+
+    codeMirror.on("change", debounce(function () {
+        obj.script = codeMirror.getValue();
+        objUpdated();
+    }, 250, false));
+    var onResize = function () {
+        codeMirror.setSize(editor.clientWidth, editor.clientHeight);
+    };
+    window.addEventListener('resize', onResize);
+    onResize();
+    $('#imageSize').change(function () {
+        objUpdated();
+    });
+
+    var chooseLang = document.getElementById('choose-lang');
+    var languageCodes = Object.keys(scratchblocks.allLanguages);
+    languageCodes.sort();
+    languageCodes.forEach(function (code) {
+        if (code === "en")
+            return;
+        var option = document.createElement("option");
+        option.value = code;
+        var language = scratchblocks.allLanguages[code];
+        option.textContent = language.name && language.altName ? language.name + " — " + language.altName : language.name || language.altName || code;
+        chooseLang.appendChild(option);
+    });
+    var langStatus = document.getElementById('lang-status');
+    chooseLang.addEventListener('change', function (e) {
+        if (obj.lang === chooseLang.value)
+            return;
+        obj.lang = chooseLang.value;
+        objUpdated();
+    });
+    var chooseStyle = document.getElementById('choose-style');
+    chooseStyle.addEventListener('change', function(e) {
+        if (obj.style === chooseStyle.value) return
+        obj.style = chooseStyle.value;
+        objUpdated();
+    });
+
+    function objUpdated() {
+        var maxImageSize = <?= getMaxImageSize() ?>;
+        // render code
+        var doc = window.doc = scratchblocks.parse(obj.script, {
+            languages: obj.lang ? ['en', obj.lang] : ['en']
+        });
+        var docView = scratchblocks.newView(doc, {
+            style: obj.style
+        });
+
+        /*
+            overriding default docView.exportPNG
+            this lets us get a DataURL to turn into a blob on the server
+            original code is commented out, addition is labeled
+        */
+        docView.exportPNG = function (cb, scale) {
+            this.toCanvas(function (canvas) {
+
+                /* if (URL && URL.createObjectURL && Blob && canvas.toBlob) {
+                  var blob = canvas.toBlob(function(blob) {
+                    cb(URL.createObjectURL(blob))
+                  }, "image/png")
+                } else {
+                  cb(canvas.toDataURL("image/png"))
+                 } */
+
+                //replaced original code with this
+                cb(canvas.toDataURL("image/png"));
+
+            }, scale);
+        };
+        var svg = docView.render();
+        preview.innerHTML = "";
+        preview.appendChild(svg);
+        if (obj.style === 'scratch3') {
+            svg.style.transform = 'scale(0.675)';
+            svg.style.transformOrigin = '0 0';
+        }
+        //exportPNGLink.href = "";
+        // add export link
+        setTimeout(function () {
+            docView.exportPNG(function (pngDataURL) {
+                //exportPNGLink.href = pngDataURL;
+                pngUrl = pngDataURL;
+            }, Math.min($('#imageSize').val(), maxImageSize));
+        }, 0);
+        // include code in scratchblocks links
+        // update language dropdown
+    }
+    $('#addBlocks').click(function () {
+        // This fires after the blob has been read/loaded.
+        $('#loader').css('display', 'inline-block');
+        $('#error').remove();
+        google.script.run
+            .withSuccessHandler(function () {
+                $('#loader').hide();
+            })
+            .withFailureHandler(function (msg, element) {
+                $('#loader').hide();
+                showError(msg, $('#editor'));
+            })
+            .insertImage(pngUrl);
+    });
+    function showError(msg, element) {
+        $('#error').remove();
+        var div = $('<div id="error" class="error">' + msg + '</div>');
+        $(element).after(div);
+    }
+
+
+
+</script>

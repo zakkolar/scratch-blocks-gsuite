@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <!-- The CSS package above applies Google styling to buttons and other elements. -->
+    <meta charset="UTF-8">
+    <style>
+        .branding-below {
+            bottom: 56px;
+            top: 0;
+        }
+        .branding-text {
+            left: 7px;
+            position: relative;
+            top: 3px;
+        }
+        .col-contain {
+            overflow: hidden;
+        }
+        .logo {
+            vertical-align: middle;
+        }
+        .radio-spacer {
+            height: 20px;
+        }
+        .width-100 {
+            width: 100%;
+        }
+        #main{
+            display:none;
+        }
+        .form-group{
+            border-bottom-style:solid;
+            border-color:#777;
+            padding-bottom:10px;
+            border-width:1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar branding-below">
+    <div>
+        <select id="choose-style">
+            <option value="scratch2">Scratch 2.0
+            <option value="scratch3" selected>Scratch 3.0
+        </select>
+
+        <select id="choose-lang">
+            <option value="">Select language…
+        </select>
+
+        <small id=lang-status></small>
+
+    </div>
+    <h1>Type blocks here:</h1>
+
+    <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">What do I type?</a>
+    <div id="editor"></div>
+    <label for="imageSize">Image size:</label>
+    <select id="imageSize">
+        <? for (var i=1; i<=getMaxImageSize(); i++){ ?>
+        <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
+        <? } ?>
+    </select>
+    <button id="addBlocks" class="blue">Add Blocks</button>
+
+    <div class="loader" id="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+    </div>
+    <h1>Block preview:</h1>
+    <pre id="preview" class="blocks"></pre>
+</div>
+
+<?!= include('libs/scratchblocks-v3.3-min.js.html') ?>
+<?!= include('libs/scratchblocks-translations-all-v3.3.js.html') ?>
+<?!= include('libs/codemirror.min.css.html') ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.js"></script>
+<?!= include('libs/jquery.min.js.html') ?>
+
+
+<?!= include('Sidebar.js.html') ?>
+<?!= include('Loader.css.html') ?>
+
+</body>
+</html>

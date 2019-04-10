@@ -1,0 +1,22 @@
+{
+  "name": "scratch-blocks-generator",
+  "version": "1.0.0",
+  "description": "This repo ports the [Scratch Blocks Generator](https://github.com/scratchblocks/scratchblocks) by [tjvr](https://github.com/tjvr) into Google Docs and Google Slides for educators to quickly and easily create materials related to Scratch.",
+  "main": "index.js",
+  "scripts": {
+    "mkdirs": "mkdir -p dist/scratch-blocks-docs && mkdir -p dist/scratch-blocks-slides",
+    "copy:global": "cp -r src/global/* dist/scratch-blocks-docs && cp -r src/global/* dist/scratch-blocks-slides",
+    "copy:docs": "cp -r src/scratch-blocks-docs/* dist/scratch-blocks-docs",
+    "copy:slides": "cp -r src/scratch-blocks-slides/* dist/scratch-blocks-slides",
+    "copy": "npm run copy:global && npm run copy:docs && npm run copy:slides",
+    "build": "npm run copy",
+    "deploy:docs": "cd dist/scratch-blocks-docs && clasp push",
+    "deploy:slides": "cd dist/scratch-blocks-slides && clasp push",
+    "deploy": "npm run deploy:docs && npm run deploy:slides",
+    "dev": "npm run build && npm run deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}
