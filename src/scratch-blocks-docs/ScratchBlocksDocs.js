@@ -27,3 +27,8 @@ function insertImage(img) {
         image = DocumentApp.getActiveDocument().getBody().appendImage(blob);
     }
 }
+
+
+function getButtonText(){
+    return "Add Blocks to Document";
+}

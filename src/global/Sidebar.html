@@ -64,7 +64,7 @@
         <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
         <? } ?>
     </select>
-    <button id="addBlocks" class="blue">Add Blocks</button>
+    <button id="addBlocks" class="blue"><?= getButtonText() ?></button>
 
     <div class="loader" id="loader">
         <svg class="circular" viewBox="25 25 50 50">

@@ -33,3 +33,7 @@ function insertImage(img) {
     slide.insertImage(blob);
 
 }
+
+function getButtonText(){
+    return "Add Blocks to Slide";
+}
