@@ -1,4 +1,4 @@
-function onOpen() {
+function createMenu(){
     DocumentApp.getUi().createAddonMenu()
         .addItem("Show Generator", "showSidebar")
         .addToUi();
@@ -6,8 +6,8 @@ function onOpen() {
     DocumentApp.getUi().createMenu("Scratch Blocks Docs")
         .addItem("Show Generator", "showSidebar")
         .addToUi();
-
 }
+
 function showSidebar() {
     var ui = HtmlService.createTemplateFromFile('Sidebar').evaluate()
         .setTitle('Scratch Blocks Generator');

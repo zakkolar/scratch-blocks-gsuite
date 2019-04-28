@@ -1,4 +1,4 @@
-function onOpen() {
+function createMenu() {
     SlidesApp.getUi().createAddonMenu()
         .addItem("Show Generator", "showSidebar")
         .addToUi();

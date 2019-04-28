@@ -16,3 +16,12 @@ function getBlobFromString(img) {
     var blob = Utilities.newBlob(decoded, MimeType.PNG);
     return blob;
 }
+
+function onOpen(e) {
+    createMenu();
+
+}
+
+function onInstall(e){
+    onOpen(e);
+}
