@@ -31,10 +31,7 @@
             display:none;
         }
         .form-group{
-            border-bottom-style:solid;
-            border-color:#777;
             padding-bottom:10px;
-            border-width:1px;
         }
     </style>
 </head>
@@ -56,16 +53,23 @@
 
     </div>
     <h1>Type blocks here:</h1>
-
     <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">What do I type?</a>
     <div id="editor"></div>
-    <label for="imageSize">Image size:</label>
-    <select id="imageSize">
-        <? for (var i=1; i<=getMaxImageSize(); i++){ ?>
-        <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
-        <? } ?>
-    </select>
-    <button id="addBlocks" class="blue"><?= getButtonText() ?></button>
+    <p>Seeing mostly red blocks? Some blocks require specific punctuation to be recognized and colored properly. Click <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">here</a> to see what to type for each block.
+    </p>
+    <div class="form-group block">
+        <label for="imageSize">Image size:</label>
+        <select id="imageSize">
+            <? for (var i=1; i<=getMaxImageSize(); i++){ ?>
+            <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
+            <? } ?>
+        </select>
+    </div>
+
+    <div class="form-group block">
+        <button id="addBlocks" class="blue"><?= getButtonText() ?></button>
+    </div>
+
 
     <div class="loader" id="loader">
         <svg class="circular" viewBox="25 25 50 50">
