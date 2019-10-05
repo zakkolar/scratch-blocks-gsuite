@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "mkdirs": "mkdir -p dist/scratch-blocks-docs && mkdir -p dist/scratch-blocks-slides",
-    "copy:global": "cp -r src/global/* dist/scratch-blocks-docs && cp -r src/global/* dist/scratch-blocks-slides",
+    "copy:global": "cp -r src/global/{*,.claspignore} dist/scratch-blocks-docs && cp -r src/global/{*,.claspignore} dist/scratch-blocks-slides",
     "copy:docs": "cp -r src/scratch-blocks-docs/* dist/scratch-blocks-docs",
     "copy:slides": "cp -r src/scratch-blocks-slides/* dist/scratch-blocks-slides",
     "copy": "npm run copy:global && npm run copy:docs && npm run copy:slides",
