@@ -146,6 +146,38 @@
         $(element).after(div);
     }
 
+    function clearActiveTab(){
+        $('.tabs li.active').each(function(){
+            $(this).removeClass('active');
+        })
+    }
+
+    function showEditor(){
+        clearActiveTab();
+        $('#editBlocks').addClass('active');
+        $('#editorPanel').show();
+        $('#previewPanel').hide();
+    }
+
+    function showPreview(){
+        clearActiveTab();
+        $('#previewBlocks').addClass('active');
+        $('#editorPanel').hide();
+        $('#previewPanel').show();
+    }
+
+    $('#editBlocks a').click(function(e){
+        e.preventDefault();
+        showEditor();
+    });
+
+    $('#previewBlocks a').click(function(e){
+        e.preventDefault();
+        showPreview();
+    });
+
+    showEditor();
+
 
 
 </script>

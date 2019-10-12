@@ -34,7 +34,3 @@ function insertImage(img,text) {
     image.setDescription(text);
 
 }
-
-function getButtonText(){
-    return "Add Blocks to Slide";
-}

@@ -28,8 +28,3 @@ function insertImage(img, text) {
     }
     image.setAltDescription(text);
 }
-
-
-function getButtonText(){
-    return "Add Blocks to Document";
-}

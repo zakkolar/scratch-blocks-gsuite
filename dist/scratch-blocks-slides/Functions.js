@@ -25,3 +25,7 @@ function onOpen(e) {
 function onInstall(e){
     onOpen(e);
 }
+
+function getButtonText(){
+    return "Insert Blocks";
+}

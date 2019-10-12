@@ -5,79 +5,71 @@
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <!-- The CSS package above applies Google styling to buttons and other elements. -->
     <meta charset="UTF-8">
-    <style>
-        .branding-below {
-            bottom: 56px;
-            top: 0;
-        }
-        .branding-text {
-            left: 7px;
-            position: relative;
-            top: 3px;
-        }
-        .col-contain {
-            overflow: hidden;
-        }
-        .logo {
-            vertical-align: middle;
-        }
-        .radio-spacer {
-            height: 20px;
-        }
-        .width-100 {
-            width: 100%;
-        }
-        #main{
-            display:none;
-        }
-        .form-group{
-            padding-bottom:10px;
-        }
-    </style>
+    <?!= include('Sidebar.css') ?>
 </head>
 <body>
-
 <div class="sidebar branding-below">
-    <p>Based on <a href="https://scratchblocks.github.io/#?style=scratch3&script=">Scratch Blocks</a>.</p>
+    <ul class='tabs'>
+        <li id="editBlocks">
+            <a href='#'>Edit blocks</a>
+        </li>
+        <li  id="previewBlocks">
+            <a href='#'>Preview blocks</a>
+        </li>
+    </ul>
+    <div class='tab-content'>
+        <div id="editorPanel">
+            <p class="compact"><b>Block settings:</b></p>
+            <select id="choose-style" style="width:35%;">
+                <option value="scratch2">Scratch 2.0
+                <option value="scratch3" selected>Scratch 3.0
+            </select>
+            <select id="choose-lang" style="width:55%;">
+                <option value="">Select language…
+            </select>
+
+            <small id=lang-status></small>
+            <p class="compact"><b>Type blocks:</b></p>
+            <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">What do I type?</a>
+            <div id="editor"></div>
+        </div>
+        <div id="previewPanel">
+            <p>Seeing mostly red blocks? Some blocks require specific punctuation to be recognized and colored properly. Click <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">here</a> to see what to type for each block.
+            </p>
+            <pre id="preview" class="blocks"></pre>
+        </div>
+
+
+
+
+        <p>Based on <a href="https://scratchblocks.github.io/#?style=scratch3&script=" target="_blank">Scratch Blocks</a>.</p>
+
+
+    </div>
+</div>
+<div class="sidebar bottom">
+
     <div>
-        <select id="choose-style">
-            <option value="scratch2">Scratch 2.0
-            <option value="scratch3" selected>Scratch 3.0
-        </select>
-
-        <select id="choose-lang">
-            <option value="">Select language…
-        </select>
-
-        <small id=lang-status></small>
-
-    </div>
-    <h1>Type blocks here:</h1>
-    <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">What do I type?</a>
-    <div id="editor"></div>
-    <p>Seeing mostly red blocks? Some blocks require specific punctuation to be recognized and colored properly. Click <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">here</a> to see what to type for each block.
-    </p>
-    <div class="form-group block">
-        <label for="imageSize">Image size:</label>
-        <select id="imageSize">
-            <? for (var i=1; i<=getMaxImageSize(); i++){ ?>
-            <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
-            <? } ?>
-        </select>
-    </div>
-
-    <div class="form-group block">
-        <button id="addBlocks" class="blue"><?= getButtonText() ?></button>
+        <div class="inline">
+            <label for="imageSize">Image size:</label>
+            <select id="imageSize">
+                <? for (var i=1; i<=getMaxImageSize(); i++){ ?>
+                <option value='<?= i ?>' <? if (getDefaultImageSize()==i){ ?> selected <? } ?>><?= i ?></option>
+                <? } ?>
+            </select>
+        </div>
+        <div class="inline">
+            <button id="addBlocks" class="blue"><?= getButtonText() ?></button>
+            <div class="loader" id="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                </svg>
+            </div>
+        </div>
     </div>
 
 
-    <div class="loader" id="loader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-        </svg>
-    </div>
-    <h1>Block preview:</h1>
-    <pre id="preview" class="blocks"></pre>
+
 </div>
 
 <?!= include('libs/scratchblocks-v3.3-min.js.html') ?>
