@@ -14,7 +14,7 @@ function showSidebar() {
     SlidesApp.getUi().showSidebar(ui);
 }
 
-function insertImage(img) {
+function insertImage(img,text) {
     var blob = getBlobFromString(img);
     var presentation = SlidesApp.getActivePresentation();
 
@@ -30,7 +30,8 @@ function insertImage(img) {
         slide = presentation.appendSlide();
     }
 
-    slide.insertImage(blob);
+    var image = slide.insertImage(blob);
+    image.setDescription(text);
 
 }
 

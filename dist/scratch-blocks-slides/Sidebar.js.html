@@ -138,7 +138,7 @@
                 $('#loader').hide();
                 showError(msg, $('#editor'));
             })
-            .insertImage(pngUrl);
+            .insertImage(pngUrl, codeMirror.getValue());
     });
     function showError(msg, element) {
         $('#error').remove();

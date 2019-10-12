@@ -16,7 +16,7 @@ function showSidebar() {
 
 
 
-function insertImage(img) {
+function insertImage(img, text) {
     var blob = getBlobFromString(img);
     var cursor = DocumentApp.getActiveDocument().getCursor();
     var image;
@@ -26,6 +26,7 @@ function insertImage(img) {
     else {
         image = DocumentApp.getActiveDocument().getBody().appendImage(blob);
     }
+    image.setAltDescription(text);
 }
 
 
