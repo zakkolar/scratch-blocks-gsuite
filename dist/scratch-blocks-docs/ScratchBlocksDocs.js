@@ -1,17 +1,5 @@
-function createMenu(){
-    DocumentApp.getUi().createAddonMenu()
-        .addItem("Show Generator", "showSidebar")
-        .addToUi();
-
-    DocumentApp.getUi().createMenu("Scratch Blocks Docs")
-        .addItem("Show Generator", "showSidebar")
-        .addToUi();
-}
-
-function showSidebar() {
-    var ui = HtmlService.createTemplateFromFile('Sidebar').evaluate()
-        .setTitle('Scratch Blocks Generator');
-    DocumentApp.getUi().showSidebar(ui);
+function getUi(){
+    return DocumentApp.getUi();
 }
 
 

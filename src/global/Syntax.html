@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <!-- The CSS package above applies Google styling to buttons and other elements. -->
+    <meta charset="UTF-8">
+    <style type="text/css">
+        h1{
+            font-size:18px;
+            border-bottom-style:solid;
+            border-width:1px;
+            padding-bottom:5px;
+            border-color: #333333;
+        }
+        h2{
+            font-size:16px;
+        }
+        ol.contents{
+            padding: 0 15px;
+
+        }
+
+        ol.contents ol{
+            list-style-type: lower-alpha;
+        }
+
+        body{
+            max-width:550px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        table, th, td{
+            border-style:solid;
+            border-width:1px;
+            border-color: #ccc;
+            padding:5px;
+            margin:0;
+        }
+        thead{
+            background-color: #616161;
+            font-weight: bold;
+            color: white;
+            text-align:center;
+        }
+        pre:not(.blocks){
+            border-style:solid;
+            border-color:#eee;
+            border-width:1px;
+            padding:4px;
+        }
+        pre.blocks{
+            border-style:none;
+        }
+    </style>
+</head>
+<body>
+
+<p>Click <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">here</a> to open the guide in a new window.</p>
+
+<h1>Contents</h1>
+
+<ol class="contents">
+    <li><a href="#overview" target="_self">Overview</a></li>
+    <li><a href="#arguments" target="_self">Arguments</a>
+        <ol><li><a href="#numerical-insert" target="_self">Numerical Insert</a>
+        </li><li><a href="#string-insert" target="_self">String Insert</a>
+        </li><li><a href="#block-insert" target="_self">Block Insert</a>
+        </li><li><a href="#color-picker" target="_self">Color Picker</a>
+        </li><li><a href="#dropdown-list" target="_self">Dropdown List</a>
+        </li></ol></li><li><a href="#special-blocks" target="_self">Special Blocks</a>
+    <ol><li><a href="#hat-blocks" target="_self">Hat Blocks</a>
+    </li><li><a href="#stack-blocks" target="_self">Stack Blocks</a>
+    </li><li><a href="#c-blocks" target="_self">C Blocks</a>
+    </li></ol></li><li><a href="#comments" target="_self">Comments</a>
+</li><li><a href="#custom-blocks" target="_self">Custom Blocks</a>
+    <ol><li><a href="#custom-block-inputs" target="_self">Custom Block Inputs</a>
+    </li></ol></li><li><a href="#list-reporters" target="_self">List Reporters</a>
+</li><li><a href="#hacks" target="_self">Hacks</a>
+    <ol><li><a href="#color-and-shape-changing" target="_self">Color and Shape Changing</a>
+    </li><li><a href="#snap" target="_self">Snap!</a>
+    </li><li><a href="#gp" target="_self">GP</a>
+    </li></ol>
+</li></ol>
+
+<h1 id="overview">Overview</h1>
+
+<p>Every block goes on a new line and is written as the text on the block is shown on Scratch. For example:</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Text</th>
+        <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <pre>
+when green flag clicked
+forever
+    turn cw (15) degrees
+    say [Hello!] for (2) secs
+    if &lt;mouse down?&gt; then
+        change [mouse clicks v] by (1)
+    end
+end
+            </pre>
+        </td>
+        <td>
+            <pre class="blocks">
+when green flag clicked
+forever
+    turn cw (15) degrees
+    say [Hello!] for (2) secs
+    if &lt;mouse down?&gt; then
+        change [mouse clicks v] by (1)
+    end
+end
+            </pre>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1 id="arguments">Arguments</h1>
+<p>Arguments, or inputs to a block, are represented within the block with various codes.</p>
+<h2 id="numerical-insert">Numerical insert</h2>
+<p>The round numerical insert is used with parentheses: <code class='code-inline'>(10)</code></p>
+
+<pre>move (10) steps</pre>
+<pre class="blocks">
+    move (10) steps
+</pre>
+
+<h2 id="string-insert">String Insert</h2>
+
+<p>String inputs are created with square brackets: <code>[lorem ipsum]</code></p>
+
+<pre>say [Hi]</pre>
+<pre class="blocks">say [Hi]</pre>
+
+<pre>think [bye]</pre>
+<pre class="blocks">think [bye]</pre>
+
+<h2 id="block-insert">Block Insert</h2>
+Boolean blocks and reporter blocks are created with &lt;boolean&gt; and (reporter), respectively.
+
+<pre>if &lt;mouse down?&gt; and <(costume #) = [1]>> then
+    stamp
+end</pre>
+<pre class="blocks">if &lt;mouse down?&gt; and <(costume #) = [1]>> then
+    stamp
+end</pre>
+
+<h2 id="color-picker">Color Picker</h2>
+
+<p>A color picker is represented with <code>[#hexcode]</code>. #hexcode is a hexadecimal color code.</p>
+
+<pre>set pen color to [#00ff00]</pre>
+
+<pre class="blocks">set pen color to [#00ff00]</pre>
+
+<h2 id="dropdown-list">Dropdown List</h2>
+
+Dropdown lists are created with the code <code>[selection v]</code>
+
+<pre>broadcast [start v]</pre>
+<pre class="blocks">broadcast [start v]</pre>
+
+<h1 id="special-blocks">Special Blocks</h1>
+<p>Some blocks have different code based on their unique shapes and features, as well as technical limitations.</p>
+
+<h2 id="hat-blocks">Hat Blocks</h2>
+
+<p>The When Green Flag Clicked block can be typed with any of the following syntax options:</p>
+
+<pre>when green flag clicked
+when gf clicked
+when flag clicked</pre>
+
+<pre class="blocks">when green flag clicked</pre>
+
+<pre>when this sprite clicked</pre>
+
+<pre class="blocks">when this sprite clicked</pre>
+
+<p>The When () key pressed block uses a drop-down menu:</p>
+<pre>when [space v] key pressed</pre>
+<pre class="blocks">when [space v] key pressed</pre>
+
+<h2 id="stack-blocks">Stack Blocks</h2>
+<p>The Turn () Degrees (clockwise) block can be written two ways:</p>
+<pre>turn cw () degrees
+turn right () degrees</pre>
+<pre class="blocks">turn cw () degrees</pre>
+
+<p>The Turn () Degrees (counter-clockwise) block can be written two ways:</p>
+<pre>turn ccw () degrees
+turn left () degrees</pre>
+
+<pre class="blocks">turn ccw () degrees</pre>
+
+<h2 id="c-blocks">C Blocks</h2>
+<p>C blocks must be closed by typing "end" after the last stack block inside it. However, C blocks at the end of a script will close automatically. For example:</p>
+
+<pre>repeat (10)
+    move (5) steps
+    stamp
+end
+repeat (10)
+    move (10) steps
+    stamp</pre>
+
+<pre class="blocks">repeat (10)
+    move (5) steps
+    stamp
+end
+repeat (10)
+    move (10) steps
+    stamp</pre>
+
+<h1 id="comments">Comments</h1>
+<p>Comments are created with two slashes: <code>// comment</code> after a block.</p>
+
+<pre>move (10) steps // is that too far?</pre>
+
+<pre class="blocks">move (10) steps // is that too far?</pre>
+
+<h1 id="custom-blocks">Custom Blocks</h1>
+
+<p>If one tries to show a custom block, it will appear obsolete (red) because it has not been defined.</p>
+
+<pre>jump</pre>
+<pre class="blocks">jump</pre>
+
+<p>A definition can be created by writing "define" followed by the name of the block:</p>
+
+<pre>define jump
+repeat (10)
+    change y by (4)
+end</pre>
+
+<pre class="blocks">define jump
+repeat (10)
+    change y by (4)
+end</pre>
+
+<p>Number, boolean, and string arguments can be added:</p>
+
+<pre>define jump (height) &lt;gravity on?&gt; [message]</pre>
+<pre class="blocks">define jump (height) &lt;gravity on?&gt; [message]</pre>
+
+<p>Once a define hat has been made, one can then use the block and it will no longer appear obsolete.</p>
+
+<pre>jump
+
+define jump
+repeat (10)
+    change y by (4)
+end</pre>
+
+<pre class="blocks">jump
+
+define jump
+repeat (10)
+    change y by (4)
+end</pre>
+
+<h2 id="custom-block-inputs">Custom Block Inputs</h2>
+
+<p>If one tries to use an input reporter without making a block definition first, it will appear as a variable.</p>
+
+<pre>say (height)</pre>
+<pre class="blocks">say (height)</pre>
+
+<p>But if it is put below a block definition, it will render as an input reporter:</p>
+
+<pre>define jump (height)
+say (input)
+</pre>
+
+<pre class="blocks">define jump (height)
+say (input)
+</pre>
+
+<h1 id="list-reporters">List Reporters</h1>
+
+<p>If one tries to write a list reporter, it will look like a variable reporter, because the plugin has no way of telling them apart.</p>
+
+<pre>say (list of Scratch team members)
+</pre>
+
+<pre class="blocks">say (list of Scratch team members)
+</pre>
+
+<p>However, if one has used the list in a <b>list block</b>, then it will render correctly:</p>
+<pre>add [mres] to [list of Scratch team members v]
+add [paddle2see] to [list of Scratch team members v]
+add [harakou] to [list of Scratch team members v]
+say (list of Scratch team members)</pre>
+
+<pre class="blocks">add [mres] to [list of Scratch team members v]
+add [paddle2see] to [list of Scratch team members v]
+add [harakou] to [list of Scratch team members v]
+say (list of Scratch team members)</pre>
+
+<p>If a list block is not wanted or needed, <code>:: list</code> can be used:</p>
+
+<pre>say (list of Scratch team members :: list)</pre>
+
+<pre class="blocks">say (list of Scratch team members :: list)</pre>
+
+
+<h1 id="hacks">Hacks</h1>
+
+<p>The blocks plugin offers hacks to allow representation of scripts from Scratch Modifications and old or unreleased versions of Scratch.</p>
+
+<h2 id="color-and-shape-changing">Color and Shape Changing</h2>
+
+<p>The color and shape of a block can be changed. This can be useful for forcing non-Scratch blocks to appear correctly.</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            Feature
+        </th>
+        <th>
+            Code
+        </th>
+        <th>
+            Result
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            Changing category (works for any kind of block)
+        </td>
+        <td>
+            <pre>abc :: looks
+say [I'm not a Motion block!] :: motion
+eat (pen color :: pen) :: control</pre>
+        </td>
+        <td>
+            <pre class="blocks">abc :: looks
+say [I'm not a Motion block!] :: motion
+eat (pen color :: pen) :: control</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Changing color
+        </td>
+        <td>
+            <pre>think [Arbitrary colors?] :: #228b22</pre>
+        </td>
+        <td>
+            <pre class="blocks">think [Arbitrary colors?] :: #228b22</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Changing shape
+        </td>
+        <td>
+            <pre>abc :: events hat
+def :: motion stack
+ghi :: pen reporter
+jkl :: operators boolean</pre>
+        </td>
+        <td>
+            <pre class="blocks">abc :: events hat
+def :: motion stack
+ghi :: pen reporter
+jkl :: operators boolean</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Creating C blocks and changing category
+        </td>
+        <td>
+            <pre>mno {
+    ...
+} :: sensing</pre>
+        </td>
+        <td>
+            <pre class="blocks">mno {
+    ...
+} :: sensing</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            C blocks with multiple branches
+        </td>
+        <td>
+            <pre>pqr {
+    ...
+} stu {
+    ...
+} vwx :: sound</pre>
+        </td>
+        <td>
+            <pre class="blocks">pqr {
+    ...
+} stu {
+    ...
+} vwx :: sound</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            C block with cap
+        </td>
+        <td>
+            <pre>yz {
+    ...
+} :: motion cap</pre>
+        </td>
+        <td>
+            <pre class="blocks">yz {
+    ...
+} :: motion cap</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Adding icons
+        </td>
+        <td>
+            <pre>@greenFlag @turnRight @loopArrow :: grey</pre>
+        </td>
+        <td>
+            <pre class="blocks">@greenFlag @turnRight @loopArrow :: grey</pre>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h2 id="snap">Snap!</h2>
+<p>The plugin also supports features specific to Snap!, such as "rings". Other blocks in Snap! can be created using the color/shape hacks above.</p>
+
+<pre>run ({create clone :: control} @addInput :: grey ring) :: control
+
+<() @addInput :: grey ring>
+
+say (http:// [snap.berkeley.edu] :: sensing)
+
+((6) × (7) :: operators)
+
+(join [hello ] [world] @delInput @addInput :: operators)
+
+script variables ((foo) :: grey) ((bar) :: grey) @delInput @addInput :: grey
+
+(all but first of (list) :: list)
+
+warp {
+  move (10) steps
+} :: grey
+
+report [Done!] :: control cap
+
+(<> @addInput) // without even the :: grey ring</pre>
+
+<p>which produces these blocks:</p>
+
+<pre class="blocks">run ({create clone :: control} @addInput :: grey ring) :: control
+
+<() @addInput :: grey ring>
+
+say (http:// [snap.berkeley.edu] :: sensing)
+
+((6) × (7) :: operators)
+
+(join [hello ] [world] @delInput @addInput :: operators)
+
+script variables ((foo) :: grey) ((bar) :: grey) @delInput @addInput :: grey
+
+(all but first of (list) :: list)
+
+warp {
+  move (10) steps
+} :: grey
+
+report [Done!] :: control cap
+
+(<> @addInput) // without even the :: grey ring</pre>
+
+
+<h2 id="gp">GP</h2>
+
+<p>This plugin also includes hacks to GP.</p>
+
+<pre>
+when tracking (mouse x&#160;:: variables) (mouse y&#160;:: variables)&#160;:: hat control
+
+((1)&#160;!= (0)&#160;:: operators)
+
+define(a function&#160;:: motion)&#160;:: custom hat
+return (1)&#160;:: control
+
+say (pi&#160;:: operators)&#160;:: motion
+
+when I receive [go]&#160;:: control
+
+wait @addInput&#160;:: control
+
+(isNil [obj v]&#160;:: operators)
+
+(touching mouse&#160;:: sensing)
+
+((--(&#160;:: #ffffff)&#160;:: operators)&#160;:: operators)
+
+if (--(&#160;:: #ffffff)&#160;:: operators) {
+} @addInput&#160;:: control
+</pre>
+
+
+<pre class="blocks">
+when tracking (mouse x&#160;:: variables) (mouse y&#160;:: variables)&#160;:: hat control
+
+((1)&#160;!= (0)&#160;:: operators)
+
+define(a function&#160;:: motion)&#160;:: custom hat
+return (1)&#160;:: control
+
+say (pi&#160;:: operators)&#160;:: motion
+
+when I receive [go]&#160;:: control
+
+wait @addInput&#160;:: control
+
+(isNil [obj v]&#160;:: operators)
+
+(touching mouse&#160;:: sensing)
+
+((--(&#160;:: #ffffff)&#160;:: operators)&#160;:: operators)
+
+if (--(&#160;:: #ffffff)&#160;:: operators) {
+} @addInput&#160;:: control
+</pre>
+
+
+
+This text and examples modified from the <a href="https://en.scratch-wiki.info/wiki/Block_Plugin/Syntax" target="_blank">Scratch Wiki</a> and available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"> CC BY-SA 4.0</a>
+
+<?!= include('libs/scratchblocks-v3.3-min.js.html') ?>
+<?!= include('libs/scratchblocks-translations-all-v3.3.js.html') ?>
+<script type="text/javascript">
+    function render(doc, options) {
+        if (typeof options === "function") {
+            throw new Error("render() no longer takes a callback")
+        }
+        var view = scratchblocks.newView(doc, options)
+        var svg = view.render()
+        if (options.style === 'scratch3') {
+            svg.setAttribute('viewBox','0 0 '+svg.getAttribute('width')+' '+svg.getAttribute('height'));
+            svg.setAttribute('width',svg.getAttribute('width')*0.675);
+            svg.setAttribute('height',svg.getAttribute('height')*0.675);
+        }
+
+        return svg
+    }
+    scratchblocks.renderMatching('pre.blocks', {style:'scratch3', size:4, render: render});
+
+   var headings = document.querySelectorAll('h1[id], h2[id]');
+
+   for(var i=0; i<headings.length; i++){
+       var heading = headings[i];
+       var p = document.createElement('p');
+       p.innerHTML = "<a href='#' target='_self'>(top)</a>";
+
+       heading.parentNode.insertBefore(p, heading.nextSibling);
+
+
+   }
+
+
+</script>
+
+
+
+</body>
+</html>

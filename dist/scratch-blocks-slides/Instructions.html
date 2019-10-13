@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <!-- The CSS package above applies Google styling to buttons and other elements. -->
+    <meta charset="UTF-8">
+    <style type="text/css">
+        h1{
+            font-size:18px;
+        }
+        ol.contents{
+            padding: 0 15px;
+        }
+        body{
+            max-width:450px;
+        }
+    </style>
+</head>
+<body>
+<h1>Contents</h1>
+<ol class="contents">
+    <li>
+        <a href="#getting-started" target="_self">Getting started</a>
+    </li>
+    <li>
+        <a href="#tutorial" target="_self">Tutorial</a>
+    </li>
+    <li>
+        <a href="#what-do-I-type" target="_self">What do I type for the blocks?</a>
+    </li>
+    <li>
+        <a href="#why-are-the-blocks-red" target="_self">Why are the blocks red?</a>
+    </li>
+    <li>
+        <a href="#help" target="_self">Help</a>
+    </li>
+    <li>
+        <a href="#credits" target="_self">Credits</a>
+    </li>
+</ol>
+
+<h1 id="getting-started">Getting started</h1>
+<ol>
+    <li>Go to Add-ons > Scratch Blocks > <?= getText('show_generator') ?>.</li>
+    <li>Choose the version of Scratch you'd like to use.</li>
+    <li>Choose the language (if you want something other than English).</li>
+    <li>Type the blocks you'd like to use. Some block types require certain punctuation or other characters to display correctly. See the <a href="#getting-started" target="_self" onclick="google.script.run.showSyntax(); return false;">block syntax guide</a> for details.</li>
+    <li>Click "<?= getText('preview_blocks') ?>" to make sure your blocks look correct.</li>
+    <li>Choose the image size for your blocks. Higher numbers are higher resolution.</li>
+    <li>Click "<?= getText('insert_blocks') ?>" to add the blocks to your document/slide.</li>
+</ol>
+
+<h1 id="tutorial">Tutorial</h1>
+<p>If you'd like to see a visual tutorial, click <a href="#tutorial" target="_self" onclick="google.script.run.showTutorial(); return false;">here</a>.</p>
+
+
+<h1 id="what-do-I-type">What do I type for the blocks?</h1>
+For many blocks, you just type the text that appears in the block; one block per line. However, some blocks require extra punctuation to display correctly. See the <a href="#what-do-I-type" target="_self" onclick="google.script.run.showSyntax(); return false;">syntax guide</a> for a full list of each block type.
+
+<h1 id="why-are-the-blocks-red">Why are the blocks red?</h1>
+Any block that is not recognized as a valid Scratch block is displayed in red. This likely means you are missing a punctuation mark or other character in your block. Check the <a href="#why-are-the-blocks-red" target="_self" onclick="google.script.run.showSyntax(); return false;">syntax guide</a> to see what you need to type for each block.
+
+<h1 id="help">Help</h1>
+<p>If you are having issues that aren't listed here, click <a href="https://zak.io/contact/" target="_blank">here</a> to contact the developer.</p>
+
+<h1 id="credits">Credits</h1>
+<p>The Scratch Blocks generator is based on <a href="https://scratchblocks.github.io/#?style=scratch3&script=" target="_blank">Scratch Blocks</a> by <a href="https://github.com/tjvr" target="_blank">Tim Radvan</a>.</p>
+
+</body>
+</html>
