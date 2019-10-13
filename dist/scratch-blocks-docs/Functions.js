@@ -51,13 +51,6 @@ function showInstructions(){
    getUi().showModelessDialog(ui, "Scratch blocks instructions");
 }
 
-function showTutorial(){
-    var ui = HtmlService.createTemplateFromFile('Tutorial')
-        .evaluate()
-        .setHeight(550)
-        .setWidth(600);
-    getUi().showModelessDialog(ui, "Scratch blocks tutorial");
-}
 
 function showSyntax(){
     var ui = HtmlService.createTemplateFromFile('Syntax')
@@ -75,7 +68,6 @@ function createMenu(){
             .addSeparator()
             .addItem("Block syntax guide", "showSyntax")
             .addItem("Instructions", "showInstructions")
-            .addItem("Tutorial","showTutorial")
             .addToUi();
     }
 
