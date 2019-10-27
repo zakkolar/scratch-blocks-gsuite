@@ -4,11 +4,16 @@
   "description": "This repo ports the [Scratch Blocks Generator](https://github.com/scratchblocks/scratchblocks) by [tjvr](https://github.com/tjvr) into Google Docs and Google Slides for educators to quickly and easily create materials related to Scratch.",
   "main": "index.js",
   "scripts": {
-    "mkdirs": "mkdir -p dist/scratch-blocks-docs && mkdir -p dist/scratch-blocks-slides",
-    "copy:global": "cp -r src/global/{*,.claspignore} dist/scratch-blocks-docs && cp -r src/global/{*,.claspignore} dist/scratch-blocks-slides",
-    "copy:docs": "cp -r src/scratch-blocks-docs/* dist/scratch-blocks-docs",
-    "copy:slides": "cp -r src/scratch-blocks-slides/* dist/scratch-blocks-slides",
-    "copy": "npm run copy:global && npm run copy:docs && npm run copy:slides",
+    "mkdirs": "shx mkdir -p dist/scratch-blocks-docs && shx mkdir -p dist/scratch-blocks-slides",
+    "copy:scratchblocks-base": "shx echo '<script>' > src/global/libs/scratchblocks.min.js.html && shx cat scratchblocks/build/scratchblocks.min.js >> src/global/libs/scratchblocks.min.js.html && shx echo '</script>' >> src/global/libs/scratchblocks.min.js.html",
+    "copy:scratchblocks-translations": "shx echo '<script>' > src/global/libs/scratchblocks-translations-all.js.html && shx cat scratchblocks/build/translations-all.js >> src/global/libs/scratchblocks-translations-all.js.html && shx echo '</script>' >> src/global/libs/scratchblocks-translations-all.js.html",
+    "copy:scratchblocks": "npm run copy:scratchblocks-base && npm run copy:scratchblocks-translations",
+    "compile:scratchblocks": "cd scratchblocks && npm run build",
+    "scratchblocks": "npm run compile:scratchblocks && npm run copy:scratchblocks",
+    "copy:global": "shx cp -r src/global/{*,.claspignore} dist/scratch-blocks-docs && shx cp -r src/global/{*,.claspignore} dist/scratch-blocks-slides",
+    "copy:docs": "shx cp -r src/scratch-blocks-docs/* dist/scratch-blocks-docs",
+    "copy:slides": "shx cp -r src/scratch-blocks-slides/* dist/scratch-blocks-slides",
+    "copy": "npm run copy:scratchblocks && npm run copy:global && npm run copy:docs && npm run copy:slides",
     "build": "npm run copy",
     "deploy:docs": "cd dist/scratch-blocks-docs && clasp push",
     "deploy:slides": "cd dist/scratch-blocks-slides && clasp push",
@@ -17,6 +22,8 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "shx": "^0.3.2"
+  },
   "dependencies": {}
 }

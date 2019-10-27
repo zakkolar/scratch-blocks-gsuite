@@ -1,0 +1,3 @@
+[submodule "scratchblocks"]
+	path = scratchblocks
+	url = git@github.com:zakkolar/scratchblocks.git
